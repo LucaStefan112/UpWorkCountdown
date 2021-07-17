@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>CountDown</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    </head>
+    <body id="body">
+        <div id="mainContainer">
+            <div class="sectionDiv" id="yearsDiv">
+                <h1 class="numberBox" id = "yearsNumber">1</h1>
+                <h2>YEARS</h2>
+            </div>
+            <div class="sectionDiv" id="monthsDiv">
+                <h1 class="numberBox" id = "monthsNumber">1</h1>
+                <h2>MONTHS</h2>
+            </div>
+            <div class="sectionDiv" id="daysDiv">
+                <h1 class="numberBox" id = "daysNumber">1</h1>
+                <h2>DAYS</h2>
+            </div>
+            <div class="sectionDiv" id="minutesDiv">
+                <h1 class="numberBox" id = "minutesNumber">1</h1>
+                <h2>MINUTES</h2>
+            </div>
+            <div class="sectionDiv" id="secondsDiv">
+                <h1 class="numberBox" id = "secondsNumber">1</h1>
+                <h2>SECONDS</h2>
+            </div>
+        </div>
+    </body>
+</html>
+    
+<script>
+    let years = document.getElementById('yearsNumber');
+    let months = document.getElementById('monthsNumber');
+    let days = document.getElementById('daysNumber');
+    let minutes = document.getElementById('minutesNumber');
+    let seconds = document.getElementById('secondsNumber');
+
+    const finalDate = new Date("August 28, 2021 16:32:0").getTime();
+
+    function updateTimer() {
+        const currentTime = new Date().getTime();
+        const secondsLeft = Math.floor((finalDate - currentTime) / 1000);
+
+        if(secondsLeft < 0) secondsLeft = 0;
+
+        const yearsLeft = Math.floor(secondsLeft / 60 / 60 / 24 / 30 / 12);             years.textContent = yearsLeft;
+        const monthsLeft = Math.floor((secondsLeft / 60 / 60 / 24 / 30) % 12);          months.textContent = monthsLeft;
+        const daysLeft = Math.floor((secondsLeft / 60 / 60 / 24) % 30);                 days.textContent = daysLeft;
+        const minutesLeft = Math.floor((secondsLeft / 60) % 60);                        minutes.textContent = minutesLeft;
+                                                                                        seconds.textContent = secondsLeft % 60;
+    }
+
+    updateTimer();
+    setInterval(updateTimer, 1000);
+</script>
